@@ -163,15 +163,37 @@ public class Semana4{
 	}
 	
 	static int[] copyWithoutMiddleElement(int[] v){
-		int size = v.length / 2;
+		int size = v.length;
+		int i = 0;
+		int j;
+		if (v.length % 2 != 0)
+			size--;
 		int[] res = new int[size];
-		//Continuar
+		while (i < size / 2)
+			res[i] = v[i++];
+		i = size - 1;
+		j = v.length - 1;
+		while (i >= size / 2)
+			res[i--] = v[j--];
 		return res;
 	}
 	
-	//copyWithoutMiddleElement({1, 2, 3, 4, 5}) {1, 2, 4, 5}
+	static int fibonacci(int n){
+		if (n == 0)
+			return 0;
+		else if (n == 1)
+			return 1;
+		else
+			return fibonacci(n - 1) + fibonacci(n - 2);
+	}
+	static int[] fibonacciSequence(int n){
+		int[] v = new int[n];
+		int i = 0;
+		while (i < n)
+			v[i] = fibonacci(i++);
+		return v;
+	}
 	
-/*	
 	static void displayVector(int[] v){
 		int i = 0;
 		while (i < v.length){
@@ -180,13 +202,8 @@ public class Semana4{
 		}
 	}
 	public static void main(String[] args) {
-		int[] v = naturals(4);
-		int[] v2 = randomDigits(3);
-		int[] v3 = {13, 14, 16, 15};
-		displayVector(v);
-		System.out.println("and the sum is " + sum(v));
-		System.out.print("Random vector is ");
-		displayVector(v2);
-		System.out.println("\nThe mean is " + mean(v3));
-	}*/
+		//int[] v = {1, 2, 3, 4, 5, 6, 7};
+		displayVector(fibonacciSequence(17));
+		//System.out.print(fibonacci(15));
+	}
 }
