@@ -156,14 +156,14 @@ public class Semana5{
 
 //Exercícios extra // B
 //Defina um procedimento que substitui o valor de uma posição aleatória do
-//vector por um dado caráter c.
+//vector por um dado carácter c.
 
 	static void replaceRandom(char a, char[] v){
 		v[(int)(Math.random() * v.length)] = a;
 	}
 
 //Exercícios extra // C
-//Defina um procedimento que "troca as metades" de um vetor de carateres.
+//Defina um procedimento que "troca as metades" de um vector de caracteres.
 
 	static void swapHalfs(char[] v){
 		for (int i = 0; i < v.length / 2; i++)
@@ -173,10 +173,9 @@ public class Semana5{
 	public static void main(String[] args){
 		char[] vec1 = {'a', 'b', 'c', 'd', 'e'};
 		char[] vec2 = {'a', 'z', 'b', 'c', 'x', 'd', 'e', 'm'};
-		char[] vec3 = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
+		char[] vec3 = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'};
 		System.out.println(vec3);
 		swapHalfs(vec3);
 		System.out.println(vec3);
 	}
-
 }
