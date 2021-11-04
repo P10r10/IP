@@ -1,7 +1,7 @@
 public class Semana5{
 
-//Trabalho prévio A
-//criar um vector de tamanho n preenchido com determinado carácter
+//Trabalho prÃ©vio A
+//criar um vector de tamanho n preenchido com determinado carÃ¡cter
 
 	static char[] charVector(char c, int n) {
 		char[] v = new char[n];
@@ -10,18 +10,18 @@ public class Semana5{
 		return v;
 	}
 
-//Trabalho prévio B
+//Trabalho prÃ©vio B
 //definir um procedimento para preencher todo o vector com determinado
-//carácter
+//carÃ¡cter
 
 	static void fill(char c, char[] v){
 		for(int i = 0; i < v.length; i++)
 			v[i] = c;
 	}
 
-//Trabalho prévio C
-//Definir um procedimento para substituir todas as ocorrências de
-//determinado carácter por outro.
+//Trabalho prÃ©vio C
+//Definir um procedimento para substituir todas as ocorrÄ™ncias de
+//determinado carÃ¡cter por outro.
 
 	static void replace(char a, char b, char[] v){
 		for(int i = 0; i < v.length; i++)
@@ -29,9 +29,9 @@ public class Semana5{
 				v[i] = b;
 	}
 
-//Exercício A
-//Defina uma função para criar um vector com os caracteres consecutivos
-//a partir de um carácter dado como argumento, de comprimento n.
+//ExercÃ­cio A
+//Defina uma funÃ§Äƒo para criar um vector com os caracteres consecutivos
+//a partir de um carÃ¡cter dado como argumento, de comprimento n.
 
 	static char[] sequence(char c, int n){
 		char[] v = new char[n];
@@ -40,9 +40,9 @@ public class Semana5{
 		return v;
 	}
 
-//Exercício B
+//ExercÃ­cio B
 //Defina procedimentos sobre vetores que permitam:
-//Substituir a primeira ocorrência de determinado carácter por outro
+//Substituir a primeira ocorrÄ™ncia de determinado carÃ¡cter por outro
 
 	static void replaceFirstAwithB(char a, char b, char[] v){
 		for(int i = 0; i < v.length; i++)
@@ -52,7 +52,7 @@ public class Semana5{
 			}
 	}
 	
-//Substituir a última ocorrência de determinado carácter por outro
+//Substituir a Ãºltima ocorrÄ™ncia de determinado carÃ¡cter por outro
 
 	static void replaceLastAwithB(char a, char b, char[] v){
 		for(int i = v.length - 1; i >= 0; i--)
@@ -63,7 +63,7 @@ public class Semana5{
 	}
 	
 //Rodar os seus elementos para a esquerda (o primeiro elemento
-//passa a último)
+//passa a Ãºltimo)
 
 	static void shiftLeft(char[] v){
 		char tmp = v[0];
@@ -72,7 +72,7 @@ public class Semana5{
 		v[v.length - 1] = tmp;
 	}
 	
-//Rodar os seus elementos para a direita (o último elemento passa
+//Rodar os seus elementos para a direita (o Ãºltimo elemento passa
 //a primeiro)
 
 	static void shiftRight(char[] v){
@@ -82,7 +82,7 @@ public class Semana5{
 		v[0] = tmp;
 	}
 	
-//Trocar os valores de duas posições do vector
+//Trocar os valores de duas posiÃ§Å‘es do vector
 
 	static void swap(int a, int b, char[] v){
 		char tmp = v[a];
@@ -96,48 +96,87 @@ public class Semana5{
 			swap(i, v.length - 1 - i, v);
 	}
 
-//Exercício C
-//Algoritmo de baralhação. Implemente um procedimento de baralhação
-//para vetores de carateres com o algoritmo de Fisher-Yates. Neste
-//contexto é útil definir uma função auxiliar para obter um número
-//inteiro aleatório entre zero e um dado número máximo (inclusive),
-//bem como a utilização do procedimento definido anteriormente que
-//troca duas posições do vetor.
+//ExercÃ­cio C
+//Algoritmo de baralhaÃ§Äƒo. Implemente um procedimento de baralhaÃ§Äƒo
+//para vectores de carateres com o algoritmo de Fisher-Yates. Neste
+//contexto Ã© Ãºtil definir uma funÃ§Äƒo auxiliar para obter um nÃºmero
+//inteiro aleatÃ³rio entre zero e um dado nÃºmero mÃ¡ximo (inclusive),
+//bem como a utilizaÃ§Äƒo do procedimento definido anteriormente que
+//troca duas posiÃ§Å‘es do vetor.
 
 	static int randomIndex(int n){
 		return (int)(Math.random() * (n + 1));
 	}
 
 	static void FisherYates(char[] v){
-		for (int i = 0; i < v.length - 1; i++)
-			swap(i, randomIndex(i), v);
+		for (int i = v.length - 1; i > 0; i--)
+			swap(i, randomIndex(v.length - 1), v);
 	}
 
-//Exercício D
-//Algoritmo de ordenação. Implemente um procedimento de ordenação
-//(crescente) para vetores de carateres, através do algoritmo Bubble Sort.
+//ExercÃ­cio D
+//Algoritmo de ordenaÃ§Äƒo. Implemente um procedimento de ordenaÃ§Äƒo
+//(crescente) para vectores de carateres, atravÃ©s do algoritmo Bubble Sort.
 
-	static int bubble(int[] v){
+	static void bubble(char[] v){
+		boolean swapped;
+		do{
+			swapped = false;
+			for (int i = 0; i < v.length - 1; i++){
+				if (v[i] > v[i + 1]){
+					swap(i, i + 1, v);
+					swapped = true;
+				}
+			}
+		}while(swapped);
+	}
+
+//ExercÃ­cios extra // A // a
+//Definir funÃ§Ã£o que permita acrescentar um carÃ¡cter ao final de um vector
+//de caracteres, obtendo um vector novo.
+
+	static char[] concatEnd(char[] v, char c){
+		char[] res = new char[v.length + 1];
 		for (int i = 0; i < v.length; i++)
-			if (v[i] > v[i + 1])
-				swap(i, i + 1, v)
-				//TERMINAR
-	
+			res[i] = v[i];
+		res[res.length - 1] = c;
+		return res;
 	}
 
+//ExercÃ­cios extra // A // b
+//Acrescentar um carÃ¡cter no inÃ­cio de um vector de caracteres, obtendo um
+//vector novo
 
-
-	static void displayVector(char[] v){
+	static char[] concatBegin(char[] v, char c){
+		char[] res = new char[v.length + 1];
+		res[0] = c;
 		for (int i = 0; i < v.length; i++)
-			System.out.print(v[i] + " ");
-		System.out.println();
+			res[i + 1] = v[i];
+		return res;
 	}
+
+//ExercÃ­cios extra // B
+//Defina um procedimento que substitui o valor de uma posiÃ§Ã£o aleatÃ³ria do
+//vector por um dado carÃ¡ter c.
+
+	static void replaceRandom(char a, char[] v){
+		v[(int)(Math.random() * v.length)] = a;
+	}
+
+//ExercÃ­cios extra // C
+//Defina um procedimento que "troca as metades" de um vetor de carateres.
+
+	static void swapHalfs(char[] v){
+		for (int i = 0; i < v.length / 2; i++)
+			swap(i, v.length / 2 + i + v.length % 2, v);
+	}
+
 	public static void main(String[] args){
-		char[] vec = charVector('s', 10);
-		char[] vec2 = {'a','b','c', 'd','e'};
-		displayVector(vec2);
-		FisherYates(vec2);
-		displayVector(vec2);
+		char[] vec1 = {'a', 'b', 'c', 'd', 'e'};
+		char[] vec2 = {'a', 'z', 'b', 'c', 'x', 'd', 'e', 'm'};
+		char[] vec3 = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
+		System.out.println(vec3);
+		swapHalfs(vec3);
+		System.out.println(vec3);
 	}
 
 }
