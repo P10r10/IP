@@ -1,9 +1,9 @@
 public class Semana6{
 
-//Trabalho prévio
-//Defina funções sobre matrizes de inteiros que permitam:
-//A. Criar uma matriz retangular com números inteiros de 0 a 9 aleatórios,
-//dado o número de linhas e número de colunas.
+//Trabalho prÃ©vio
+//Defina funÃ§Å‘es sobre matrizes de inteiros que permitam:
+//A. Criar uma matriz retangular com nÃºmeros inteiros de 0 a 9 aleatÃ³rios,
+//dado o nÃºmero de linhas e nÃºmero de colunas.
 
 	static int[][] randomMatrix(int lines, int columns){
 		int[][] m = new int[lines][columns];
@@ -13,14 +13,14 @@ public class Semana6{
 		return m;
 	}
 
-//B. Criar uma matriz quadrada com números inteiros de 0 a 9 aleatórios, dado
-//apenas um inteiro correspondente ao número de linhas/colunas.
+//B. Criar uma matriz quadrada com nÃºmeros inteiros de 0 a 9 aleatÃ³rios, dado
+//apenas um inteiro correspondente ao nÃºmero de linhas/colunas.
 
 	static int[][] squareMatrix(int n){
 		return randomMatrix(n, n);
 	}
 
-//C. Obter o somatório de todos os elementos de uma matriz dada como argumento.
+//C. Obter o somatÃ³rio de todos os elementos de uma matriz dada como argumento.
 
 	static int sumMatrix(int[][] m){
 		int sum = 0;
@@ -30,8 +30,8 @@ public class Semana6{
 		return sum;
 	}
 
-//D. Saber o número de elementos de uma matriz dada como argumento. Recorde que
-//as linhas de uma matriz (vetores) não têm necessariamente o mesmo comprimento.
+//D. Saber o nÃºmero de elementos de uma matriz dada como argumento. Recorde que
+//as linhas de uma matriz (vetores) nÄƒo tÄ™m necessariamente o mesmo comprimento.
 
 	static int numElementsMatrix(int[][] m){
 		int count = 0;
@@ -41,31 +41,30 @@ public class Semana6{
 		return count;
 	}
 
-//Desenvolva funções auxiliares sobre matrizes de inteiros que permitam:
+//Desenvolva funÃ§Å‘es auxiliares sobre matrizes de inteiros que permitam:
 //A. Obter todos os elementos da matriz num vetor.
 	static int[] unroll(int[][] m){
-		int[] v = new int[m.length * m[0].length];
+		int[] v = new int[numElementsMatrix(m)];
 		int v_idx = 0;
 		for(int i = 0; i < m.length; i++)
 			for(int j = 0; j < m[i].length; j++)
 				v[v_idx++] = m[i][j];
 		return v;
-	}//rever
+	}
 	
-//B. Criar uma matriz, dados um vetor com valores, um número de linhas,
-//e um número de colunas.
+//B. Criar uma matriz, dados um vetor com valores, um nÃºmero de linhas,
+//e um nÃºmero de colunas.
 
 	static int[][] matrixFrom(int[] v, int lines, int columns){
 		int[][] m = new int[lines][columns];
-		int v_idx = 0;
 		for(int i = 0; i < m.length; i++)
 			for(int j = 0; j < m[i].length; j++)
-				m[i][j] = v[v_idx++];
+				m[i][j] = v[i * m[i].length + j];
 		return m;
-	}//rever
+	}
 	
-//C. Verificar se uma matriz em Java (int[][]) é uma matriz de Álgebra
-//válida (i.e. se todas as linhas têm o mesmo comprimento).
+//C. Verificar se uma matriz em Java (int[][]) Ã© uma matriz de Ã¡lgebra
+//vÃ¡lida (i.e. se todas as linhas tÄ™m o mesmo comprimento).
 	
 	static boolean isValidMatrix(int[][] m){
 		for(int i = 1; i < m.length; i++)
@@ -74,15 +73,15 @@ public class Semana6{
 		return true;
 	}
 
-//D. Verificar se uma matriz em Java (int[][]) é uma matriz de Álgebra
-//quadrada válida (i.e. se todas as linhas têm o mesmo comprimento e se
-//o número de linhas corresponde ao número de colunas).
+//D. Verificar se uma matriz em Java (int[][]) Ã© uma matriz de Ã¡lgebra
+//quadrada vÃ¡lida (i.e. se todas as linhas tÄ™m o mesmo comprimento e se
+//o nÃºmero de linhas corresponde ao nÃºmero de colunas).
 	
 	static boolean isValidSquareMatrix(int[][] m){	
 		return(isValidMatrix(m) && m.length == m[0].length);
 	}
 
-//E. Verificar se duas matrizes são iguais
+//E. Verificar se duas matrizes sÄƒo iguais
 	static boolean isEqualMatrix(int[][] ma, int[][] mb){
 		for(int i = 0; i < ma.length; i++)
 			for(int j = 0; j < ma[i].length; j++)
@@ -107,8 +106,8 @@ public class Semana6{
 				m[i][j] *= s;
 	}
 
-//H. Efetuar a adição de duas matrizes, sendo que a primeira
-//é modificada ficando com o resultado da adição.
+//H. Efetuar a adiÃ§Äƒo de duas matrizes, sendo que a primeira
+//Ã© modificada ficando com o resultado da adiÃ§Äƒo.
 
 	static void accumulate(int[][] m1, int[][] m2){
 		for(int i = 0; i < m1.length; i++)
@@ -116,12 +115,53 @@ public class Semana6{
 				m1[i][j] += m2[i][j];
 	}
 
-//I. Verificar se uma matriz é uma matriz identidade.
+//I. Verificar se uma matriz Ã© uma matriz identidade.
 
 	static boolean isIdentity(int[][] m){
 		return isEqualMatrix(identity(m.length), m); 
 	}
 
+//J. Obter uma coluna da matriz como um vetor, dado o Ã­ndice da coluna.
+	static int[] getColumn(int[][] m, int idx){
+		int[] v = new int[m.length];
+		for(int i = 0; i < v.length; i++)
+			v[i] = m[i][idx];
+		return v;
+	}
+
+//K. Obter a matriz transposta de uma matriz.
+	static int[][] transpose(int[][] m){
+		int[][] t = new int[m[0].length][m.length];
+		for(int i = 0; i < m.length; i++)
+			t[i] = getColumn(m, i);
+		return t;
+		//DEBUG
+	}
+
+//L. Verificar se uma matriz Ã© simÃ©trica.
+	static boolean isSimetric(int[][] m){
+		return isEqualMatrix(m, transpose(m));
+		//TESTAR
+	}
+
+//ExercÃ­cio extra
+//Defina uma funÃ§Ã£o para multiplicar duas matrizes, assumindo que as
+//mesmas tÃªm dimensÃµes vÃ¡lidas para tal operaÃ§Ã£o.
+	static int prodVectors(int[] a, int[] b){
+		int sum = 0;
+		for (int i = 0; i < a.length; i++)
+			sum += a[i] * b[i];
+		return sum;
+	}
+
+	static int[][] prodMatrix(int[][] a, int[][] b){
+		int[][] res = new int[a.length][b[0].length];
+		prodVectors(getColumn(transpose(a), 0), getColumn(b, 0));
+		//for(int i = 0; i < m.length; i++)
+		//	t[i] = 
+		//CONTINUE AND TEST
+		return res;
+	}
 //AUX
 	static void displayMatrix(int[][] m){
 		for(int i = 0; i < m.length; i++){
@@ -138,14 +178,24 @@ public class Semana6{
 
 	public static void main(String[] args){
 		int[][] matrix_a = {{1, 2, 3, 4},
-					      {4, 5, 6, 9},
-					      {7, 8, 9, 4},
-					      {1, 5, 4, 3}};
+					      {5, 6, 7, 8},
+					      {9, 0, 1, 2},
+					      {3, 4, 5, 6}};
 		int[][] matrix_b = identity(4);
-		//int[] vector = {9, 8, 7, 6, 5, 4, 3, 2, 1};
-		System.out.print(isIdentity(matrix_a));
+		int[][] matrix_c = {{1, 2},
+					      {3, 4},
+					      {5, 6},
+					      {7, 8}};
+		int[][] matrix_d = {{1, 2, 3, 4},
+					       {5, 6, 7, 8}};
+		int[] vector = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+		int[] vector_a = {1, 2, 5};
+		int[] vector_b = {3, 4, -1};
+		//System.out.print(prodVectors(vector_a, vector_b));
 		//accumulate(matrix_a, matrix_b);
-		//displayMatrix(matrix_b);
+		displayMatrix(matrix_d);
+		//System.out.println();
+		displayMatrix(transpose(matrix_d));
 	}
 }
 
