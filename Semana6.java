@@ -43,6 +43,7 @@ public class Semana6{
 
 //Desenvolva funçőes auxiliares sobre matrizes de inteiros que permitam:
 //A. Obter todos os elementos da matriz num vetor.
+	
 	static int[] unroll(int[][] m){
 		int[] v = new int[numElementsMatrix(m)];
 		int v_idx = 0;
@@ -82,6 +83,7 @@ public class Semana6{
 	}
 
 //E. Verificar se duas matrizes săo iguais
+	
 	static boolean isEqualMatrix(int[][] ma, int[][] mb){
 		for(int i = 0; i < ma.length; i++)
 			for(int j = 0; j < ma[i].length; j++)
@@ -89,6 +91,7 @@ public class Semana6{
 					return false;
 		return true;
 	}
+	
 //F. Criar uma matriz identidade de tamanho n.
 
 	static int[][] identity(int n){
@@ -122,6 +125,7 @@ public class Semana6{
 	}
 
 //J. Obter uma coluna da matriz como um vetor, dado o índice da coluna.
+	
 	static int[] getColumn(int[][] m, int idx){
 		int[] v = new int[m.length];
 		for(int i = 0; i < v.length; i++)
@@ -130,23 +134,24 @@ public class Semana6{
 	}
 
 //K. Obter a matriz transposta de uma matriz.
+	
 	static int[][] transpose(int[][] m){
 		int[][] t = new int[m[0].length][m.length];
-		for(int i = 0; i < m.length; i++)
+		for(int i = 0; i < m[0].length; i++)
 			t[i] = getColumn(m, i);
 		return t;
-		//DEBUG
 	}
 
 //L. Verificar se uma matriz é simétrica.
+	
 	static boolean isSimetric(int[][] m){
 		return isEqualMatrix(m, transpose(m));
-		//TESTAR
 	}
 
 //Exercício extra
 //Defina uma função para multiplicar duas matrizes, assumindo que as
 //mesmas têm dimensões válidas para tal operação.
+	
 	static int prodVectors(int[] a, int[] b){
 		int sum = 0;
 		for (int i = 0; i < a.length; i++)
@@ -156,13 +161,14 @@ public class Semana6{
 
 	static int[][] prodMatrix(int[][] a, int[][] b){
 		int[][] res = new int[a.length][b[0].length];
-		prodVectors(getColumn(transpose(a), 0), getColumn(b, 0));
-		//for(int i = 0; i < m.length; i++)
-		//	t[i] = 
-		//CONTINUE AND TEST
+		for(int i = 0; i < res.length; i++)
+			for(int j = 0; j < res[i].length; j++)
+				res[i][j] = prodVectors(getColumn(transpose(a), i), getColumn(b, j));
 		return res;
 	}
-//AUX
+	
+//AUXILIARY FUNCTIONS
+	
 	static void displayMatrix(int[][] m){
 		for(int i = 0; i < m.length; i++){
 			for(int j = 0; j < m[i].length; j++)
@@ -176,6 +182,8 @@ public class Semana6{
 		System.out.println();
 	}
 
+//MAIN FOR TESTING PURPOSES
+	
 	public static void main(String[] args){
 		int[][] matrix_a = {{1, 2, 3, 4},
 					      {5, 6, 7, 8},
@@ -183,19 +191,19 @@ public class Semana6{
 					      {3, 4, 5, 6}};
 		int[][] matrix_b = identity(4);
 		int[][] matrix_c = {{1, 2},
-					      {3, 4},
-					      {5, 6},
-					      {7, 8}};
-		int[][] matrix_d = {{1, 2, 3, 4},
-					       {5, 6, 7, 8}};
+					        {3, 4}};
+		int[][] matrix_d = {{1, 2, -1, 10},
+		        			{3, 4, 6, -13}};
+		int[][] matrix_e = {{1, 9, 9},
+							{9, 1, 9},
+							{9, 9, 1}};
 		int[] vector = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
 		int[] vector_a = {1, 2, 5};
 		int[] vector_b = {3, 4, -1};
-		//System.out.print(prodVectors(vector_a, vector_b));
-		//accumulate(matrix_a, matrix_b);
-		displayMatrix(matrix_d);
-		//System.out.println();
-		displayMatrix(transpose(matrix_d));
+		System.out.print(prodVectors(vector_a, vector_b));
+		accumulate(matrix_a, matrix_b);
+		displayMatrix(matrix_c);
+		System.out.println(isSimetric(matrix_e));
+		displayMatrix(prodMatrix(matrix_d, matrix_a));
 	}
 }
-
