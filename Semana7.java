@@ -110,16 +110,42 @@ public class Semana7{
 	}
 
 //F. Criar uma imagem escalada por um fator (p.e., fator 2 duplica o tamanho da imagem).
-	/************/
+	
+	static BinaryImage scale(BinaryImage img, int x){
+		BinaryImage res = new BinaryImage(img.getWidth() * x, img.getHeight() * x);
+		for (int i = 0; i < res.getHeight(); i++)
+			for (int j = 0; j < res.getWidth(); j++)
+				if(img.isBlack(j / x, i / x))
+					res.setBlack(j, i);
+				else
+					res.setWhite(j, i);
+		return res;
+	}
 
 //G. Criar uma imagem binária através da sobreposição de duas imagens binárias,
 //sendo que: se um pixel é branco em ambas as imagens, será branco na nova imagem;
 //se um pixel é preto numa das imagens, será preto na nova imagem.
-	/************/
+	
+	static BinaryImage merge(BinaryImage small_Img, BinaryImage big_Img){
+		for (int i = 0; i < small_Img.getHeight(); i++)
+			for (int j = 0; j < small_Img.getWidth(); j++)
+				if(!small_Img.isBlack(j, i) && !big_Img.isBlack(j, i))
+					big_Img.setWhite(j, i);
+				else
+					big_Img.setBlack(j, i);
+		return big_Img;
+	}
 
 //H. Pintar um círculo de pontos aleatórios numa imagem dada, dados o centro
-//do círculo e o raio.
-	/************/
+//do círculo e o raio. (x - h)^2 + (y - k)^2 = r^2
+
+	static void randomCircle(BinaryImage img, int k, int h, int radius){
+		for (int y = 0; y < img.getHeight(); y++)
+			for (int x = 0; x < img.getWidth(); x++)
+				if(Math.sqrt(Math.pow(x - h, 2) + Math.pow(y - k, 2)) <= radius &&
+					Math.random() < 0.5)
+						img.setWhite(y, x);
+	}
 
 //AUXILIARY FUNCTIONS
 
@@ -137,14 +163,10 @@ public class Semana7{
 //MAIN FOR TESTING PURPOSES
 
 	public static void main(String[] args){
-		//BinaryImage img = new BinaryImage(30, 30);
-		BinaryImage img = createChessBoard(4);
-		//BinaryImage img = aleatorio(150, 30);
-		//paintSquare(img, 10, 1, 4);
-		//contour(img);
-		//displayImg(invertImage2(img));
+		BinaryImage img = new BinaryImage(50, 50);
+		randomCircle(img, 25, 25, 10);
 		displayImg(img);
-		System.out.println("////////////////////////////////////////");
-		displayImg(invertImage2(img));
+		//displayImg(createChessBoard(15));
+		//displayImg(img2);
 	}
 }
