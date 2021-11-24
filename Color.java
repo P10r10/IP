@@ -6,6 +6,13 @@
  * rgb[2] - Blue
  */
 class Color {
+	
+	static final Color WHITE = new Color(255, 255, 255);
+	static final Color BLACK = new Color(0, 0, 0);
+	static final Color RED = new Color(255, 0, 0);
+	static final Color GREEN = new Color(0, 255, 0);
+	static final Color BLUE = new Color(0, 0, 255);
+	static final Color LIGHTGREEN = new Color(0, 128, 0);
 
 	private final int[] rgb; // @color
 
@@ -19,7 +26,30 @@ class Color {
 		
 		this.rgb = new int[] {r, g, b};
 	}
+	
+	static Color inverted(Color color){
+		int r = color.getR();
+		int g = color.getG();
+		int b = color.getB();
+		Color c = new Color(255 - r, 255 - g, 255 - b);
+		return c;
+	}
 
+	static Color AdjustBrightness(Color color, int val){//corrigir assinatura USAR THIS retirar static
+		//int r = color.getR() + val;
+	//	int g = color.getG() + val;
+	//	int b = color.getB() + val;
+		//if (valid(r) && valid(g) && valid(b))
+		//	Color c = new Color(r, g, b);
+	//	return color(r + value, g + value, b + value);//REVER ESTA
+		return color;
+	}
+	
+	Boolean isSameColor(Color color){
+		return(this.getR() == color.getR() &&
+				this.getG() == color.getG() &&
+				this.getB() == color.getB());
+	}
 	/**
 	 * Red value [0, 255]
 	 */
