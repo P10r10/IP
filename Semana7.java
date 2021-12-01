@@ -1,17 +1,17 @@
 class Semana7 {
 	
 	static void carregaImagem(){
-		ColorImage salazar = new ColorImage("C:/Users/abpam/Desktop/semana7/s7/src/objc1.png");
-		
-		int a = ColorUtils.MAX;
-	//	Color myColor = Color.WHITE;
-	//	Color myColor2 = new Color(255, 255, 245);
-		
-		//salazar.invertColor();
-		salazar.reflectImage();
-	
-		System.out.println("LALA");
-	//	System.out.println(myColor.isSameColor(myColor2));
+		//ColorImage salazar = new ColorImage("C:/Users/Alex/Desktop/ecpliseStuff/HelloWorld/src/objc1.png");
+		//ColorImage[] quart = Images.quarterImage(salazar);
+		//ColorImage post = Images.posterize(salazar, Color.BLUE, Color.WHITE);
+		//ColorImage merge = Images.horizontalMerge(quart[0], quart[2]);
+	//	ColorImage pop = Images.popArt(salazar);
+		Color red = Color.RED;
+		//Color blue = new Color(230, 0, 0);
+		int value = 10;
+		System.out.println((int)(Math.random()*2*value) - value);
+	//	System.out.println(red.isSameColor(blue));
+		System.out.println();
 	}
 
 }

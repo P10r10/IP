@@ -27,28 +27,24 @@ class Color {
 		this.rgb = new int[] {r, g, b};
 	}
 	
-	static Color inverted(Color color){
-		int r = color.getR();
-		int g = color.getG();
-		int b = color.getB();
-		Color c = new Color(255 - r, 255 - g, 255 - b);
-		return c;
-	}
-
-	static Color AdjustBrightness(Color color, int val){//corrigir assinatura USAR THIS retirar static
-		//int r = color.getR() + val;
-	//	int g = color.getG() + val;
-	//	int b = color.getB() + val;
-		//if (valid(r) && valid(g) && valid(b))
-		//	Color c = new Color(r, g, b);
-	//	return color(r + value, g + value, b + value);//REVER ESTA
-		return color;
+	void invert(){
+		this.rgb[0] = 255 - this.getR();
+		this.rgb[1] = 255 - this.getG();
+		this.rgb[2] = 255 - this.getB();
 	}
 	
-	Boolean isSameColor(Color color){
-		return(this.getR() == color.getR() &&
-				this.getG() == color.getG() &&
-				this.getB() == color.getB());
+	 void adjustBrightness(int val){
+		 this.rgb[0] = Math.max(Math.min(this.getR() + val, 255), 0);
+		 this.rgb[1] = Math.max(Math.min(this.getG() + val, 255), 0);
+		 this.rgb[2] = Math.max(Math.min(this.getB() + val, 255), 0);
+	}
+	
+	boolean isSameColor(Color color){
+		if (color == null)
+			return false;
+		return(rgb[0] == color.rgb[0]
+				&& rgb[1] == color.rgb[1]
+				&& rgb[2] == color.rgb[2]);
 	}
 	/**
 	 * Red value [0, 255]
