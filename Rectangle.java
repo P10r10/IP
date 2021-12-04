@@ -28,6 +28,7 @@ construtor corresponda a uma invocação do outro.*/
 /*Defina funções que permitam obter a seguinte informação sobre
 o retângulo: a) área b) perímetro c) comprimento da diagonal
 d) se o retângulo é um quadrado*/
+	
 	int area(){
 		return width * height;
 	}
@@ -47,13 +48,15 @@ d) se o retângulo é um quadrado*/
 /*Defina funções que permitam obter um novo objeto retângulo:
 a) escalando o retângulo dado um fator, por exemplo, escalar um 
 retângulo 4x5 por 2 daria origem a um novo retângulo 8x10.  Caso 
-o fator seja igual a 1, deverá ser devolvido o próprio retângulo (this).*/ 
+o fator seja igual a 1, deverá ser devolvido o próprio retângulo (this).*/
+	
 	Rectangle scale(int factor){
 		if (factor == 1)
 			return this;
 		Rectangle res = new Rectangle(width * factor, height * factor);
 		return res;
 	}
+	
 /*b) somando outro retangulo, por exemplo, o retângulo 3x4 somado com os
  valores 4 e 5 daria origem a um retângulo 7x9.*/
 
@@ -61,6 +64,7 @@ o fator seja igual a 1, deverá ser devolvido o próprio retângulo (this).*/
 		Rectangle res = new Rectangle(this.width + width, this.height + height);
 		return res;
 	}
+	
 /*Defina uma função que dado um retângulo r, indica se o retângulo que
 invoca a função é maior em termos de área que r.*/
 	
@@ -77,7 +81,6 @@ iguais deverá ser devolvido o primeiro.*/
 			return b;
 		return a;
 	}
-
 }
 
 

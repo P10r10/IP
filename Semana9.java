@@ -1,12 +1,12 @@
 class Semana9{
 
 	public static void main(String[] args) {
-		Rectangle rec1 = new Rectangle(2, 4);
-		Rectangle rec2 = rec1.sum(5, 5);
+		BinaryImage img = new BinaryImage("C:/Users/Alex/Desktop/ecpliseStuff/lalala/src/cross2.bmp");
+		Rectangle rec = new Rectangle(50, 445);
+	
+		img.changeSize(rec);
 		
-
-		
-		System.out.println(rec2.width);
+		System.out.println();
 	}
 }
 
